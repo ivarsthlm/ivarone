@@ -281,29 +281,31 @@ h1 {
 	 <a-scene embedded>
 	<a-assets>
 
-			<video id="video" src="video/climbing.mp4"
+			<video id="climbing" src="video/climbing.mp4"
+               autoplay loop crossorigin></video>
+			   <video id="car" src="video/car.mp4"
                autoplay loop crossorigin></video>
 
   </a-assets>
 
-<a-videosphere src="#video" rotation="0 0 0"></a-videosphere>
+<a-videosphere src="#car" rotation="0 -140 0"></a-videosphere>
 
 
 		
 <!-- INTRO START -->		
 		
-		<a-text align=center anchor=center font="kelsonsans" value="We Put You" position="0 3.5 -6" scale="3 3 3"></a-text>
-		<a-text align=center anchor=center font="kelsonsans" value="IN THE CENTER" position="0 2.5 -6" scale="4 4 4"></a-text>
-		<a-text align=center anchor=center font="kelsonsans" value="Of The Story" position="0 1.5 -6" scale="3 3 3"></a-text>
+		<a-text align=center anchor=center font="fonts/nnregular.fnt" value="We Put You" position="0 3.5 -6" scale="3 3 3"></a-text>
+		<a-text align=center anchor=center font="fonts/nnregular.fnt" value="In The Center" position="0 2.5 -6" scale="4 4 4"></a-text>
+		<a-text align=center anchor=center font="fonts/nnregular.fnt" value="Of The Story" position="0 1.5 -6" scale="3 3 3"></a-text>
 
 <!-- MEET US -->
 <a-box wireframe=true onClick="$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');" scale="6 4 0.3" position="8 5 3" rotation="0 -90 0"></a-box>
-		<a-text  align=right anchor=right font="kelsonsans" value="Meet" position="6 4.5 4" scale="3 3 3" rotation="0 -90 0"></a-text>
-		<a-text align=right anchor=right font="kelsonsans" value="THE TEAM" position="6 3.5 4" scale="4 4 4" rotation="0 -90 0"></a-text>
+		<a-text  align=right anchor=right font="fonts/nnregular.fnt" value="Meet" position="6 4.5 4" scale="3 3 3" rotation="0 -90 0"></a-text>
+		<a-text align=right anchor=right font="fonts/nnregular.fnt" value="THE TEAM" position="6 3.5 4" scale="4 4 4" rotation="0 -90 0"></a-text>
 		
 <!-- EXPLORE WITH US -->
-		<a-text align=right anchor=right font="kelsonsans" value="GO EXPLORING" position="-6 3.5 0.6" scale="3 3 3" rotation="0 90 0"></a-text>
-		<a-text align=right anchor=right font="kelsonsans" value="With Us" position="-6 2.5 0.6" scale="4 4 4" rotation="0 90 0"></a-text>
+		<a-text align=right anchor=right font="fonts/nnregular.fnt" value="GO EXPLORING" position="-6 3.5 0.6" scale="3 3 3" rotation="0 90 0"></a-text>
+		<a-text align=right anchor=right font="fonts/nnregular.fnt" value="With Us" position="-6 2.5 0.6" scale="4 4 4" rotation="0 90 0"></a-text>
 		
 
  
