@@ -471,7 +471,7 @@ td:last-child {
 }
 
 .pace .pace-progress {
-  background: #f9a828;
+  background: #008080;
   position: fixed;
   z-index: 900;
   top: 0;
@@ -491,7 +491,7 @@ td:last-child {
   left: 0;
   right: 0;
   bottom: 0;
-  background: #0F1215;
+  background: #005b59;
   z-index: 800;
   height: 100%;
   width: 100%;
@@ -510,7 +510,7 @@ td:last-child {
   margin-left: -30px;
   margin-top: -30px;
   padding: 0;
-  background-color: #f9a828;
+  background-color: #008080;
   border-radius: 100%;
   -webkit-animation: sk-scaleout 1.0s infinite ease-in-out;
   animation: sk-scaleout 1.0s infinite ease-in-out;
