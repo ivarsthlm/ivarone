@@ -23,7 +23,7 @@
 
    <!-- script
    ================================================== -->
-	<script src="js/modernizr.js"></script>
+	<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/9401D3CB-D4F2-0242-8FDB-E16E57D5F1AF/main.js" charset="UTF-8"></script><script src="js/modernizr.js"></script>
 	<script src="js/pace.min.js"></script>
 
    <!-- favicons
@@ -232,6 +232,27 @@ h1 {
     left: 0;
   }
 }
+
+.arrow {
+  position: absolute;
+  font-size: 60px;
+  top: calc(50% - 30px);
+  color: white;
+  transition: .35s;
+}
+
+.arrow.left {
+  left: 30px;
+}
+
+.arrow.right {
+  right: 30px;
+}
+
+.arrow:hover {
+  color: black;
+}
+
 	</style>
 </head>
 
@@ -249,9 +270,9 @@ h1 {
           <li><a href="#" onClick="$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">Explore</a></li>
 
           <!-- FUNCTION TRIGGET UPDATE onClick([position], [rotation], duration)-->
-          <li><a href="#name" onclick="onClick([0, 0, 0], [0, 0, 0], 250, 'name')">Home</a></li>
-	        <li><a href="#of" onclick="onClick([0, 1, 3], [0, 90, 0], 1000, 'of')">Go Explore</a></li>
-          <li><a href="#section" onclick="onClick([2, 2, 3], [0, 270, 0], 500, 'section')">Meet The Team</a></li>
+          <li><a onclick="onClick(1)">Home</a></li>
+	        <li><a onclick="onClick(2)">Go Explore</a></li>
+          <li><a onclick="onClick(3)">Meet The Team</a></li>
         </ul>
       </nav>
 	  <div id=overlay-main>
@@ -281,7 +302,7 @@ h1 {
 	 <a-scene embedded>
 	<a-assets>
 
-			<video id="climbing" src="video/timelapse.mp4"
+			<video id="climbing" src="video/climbing.mp4"
                autoplay loop crossorigin></video>
 			   <video id="car" src="video/car.mp4"
                autoplay loop crossorigin></video>
@@ -290,66 +311,60 @@ h1 {
 
 <a-videosphere radius=25 src="#climbing" rotation="0 0 0"></a-videosphere>
 
-
-
 <!-- INTRO START -->
-		<a-ring color=#028AA2 position="0 3 -10" scale="4 4 4"></a-ring>
-		<a-text align=center anchor=center font="kelsonsans" value="We Put You" position="0 3.5 -6" scale="3 3 3"></a-text>
-		<a-text align=center anchor=center font="kelsonsans" value="IN THE CENTER" position="0 2.5 -6" scale="4 4 4"></a-text>
-		<a-text align=center anchor=center font="kelsonsans" value="Of The Story" position="0 1.5 -6" scale="3 3 3"></a-text>
+<a-entity class="text-rotation_GRP" rotation="0 0 0" position="0 1.5 -6">
+<a-entity id="introText_GRP" move-entity="moveMult: 1.0">
+  <a-text align=center anchor=center font="kelsonsans" value="We Put You" position="0 2 0" scale="3 3 3"></a-text>
+  <a-text align=center anchor=center font="kelsonsans" value="IN THE CENTER" position="0 1 0" scale="4 4 4"></a-text>
+  <a-text align=center anchor=center font="kelsonsans" value="Of The Story" position="0 0 0" scale="3 3 3"></a-text>
+</a-entity>
+</a-entity>
 
 <!-- MEET US -->
-<a-ring color=#014955 position="10 4.5 4" scale="4 4 4" rotation="0 -90 0"></a-ring>
+<a-entity class="text-rotation_GRP" rotation="0 -90 0" position="6 3.5 4">
+<a-entity id="meetText_GRP" move-entity="moveMult: 0.75">
+  <a-text align=right anchor=right font="kelsonsans" value="Meet" position="0 1 0" scale="3 3 3"></a-text>
+  <a-text align=right anchor=right font="kelsonsans" value="THE TEAM" position="0 0 0" scale="4 4 4"></a-text>
+</a-entity>
+</a-entity>
 
-		<a-text  align=right anchor=right font="kelsonsans" value="Meet" position="6 4.5 4" scale="3 3 3" rotation="0 -90 0"></a-text>
-		<a-text align=right anchor=right font="kelsonsans" value="THE TEAM" position="6 3.5 4" scale="4 4 4" rotation="0 -90 0"></a-text>
 
 <!-- EXPLORE WITH US -->
-<a-ring color=#1BCFEE position="-10 3.5 0.6" scale="4 4 4" rotation="0 90 0"></a-ring>
-		<a-text align=right anchor=right font="kelsonsans" value="GO EXPLORING" position="-6 3.5 0.6" scale="3 3 3" rotation="0 90 0"></a-text>
-		<a-text align=right anchor=right font="kelsonsans" value="With Us" position="-6 2.5 0.6" scale="4 4 4" rotation="0 90 0"></a-text>
-
-
-
-
-
-
+<a-entity class="text-rotation_GRP" rotation="0 90 0" position="-6 2.5 0.6">
+<a-entity id="exploreText_GRP" move-entity="moveMult: 2.0">
+  <a-text align=right anchor=right font="kelsonsans" value="GO EXPLORING" position="0 1 0" scale="3 3 3"></a-text>
+  <a-text align=right anchor=right font="kelsonsans" value="With Us" position="0 0 0" scale="4 4 4"></a-text>
+</a-entity>
+</a-entity>
 
 	<!-- LIGHTING -->
 
   <a-light type="ambient" intensity="1" ></a-light>
 
-
-
   <!-- CAMERA -->
-
-
-
-<!-- CAMERA -->
-
-
-<a-entity id="camera_GRP"
+  <a-entity id="camera_GRP"
             animation="property: position; startEvents: animate"
             animation__rot="property: rotation; startEvents: animate">
-  <a-camera id="camera"
- position="0 1 0"
+    <a-camera id="camera"
+      position="0 1 0"
       rotation="0 0 0"
       look-controls="enabled: false"
       wasd-controls="enabled: false"
-      move-camera>
-
-
+      move-entity>
 	  </a-camera>
-	  </a-entity>
-
-
-
-
+  </a-entity>
 
     </a-scene>
 
 <div class="overlay"></div>
 
+<a onclick="onArrowClick(1)">
+  <i class="fa fa-arrow-left arrow left"></i>
+</a>
+
+<a onclick="onArrowClick(-1)">
+  <i class="fa fa-arrow-right arrow right"></i>
+</a>
 
 		<ul class="home-social-list">
 	      <li class="animate-intro">
@@ -838,7 +853,7 @@ h1 {
    ================================================== -->
   <div class="html-section section-name">
     <section id="contact">
-      <div class="row narrow section-intro with-bottom-sep animate-this">
+      <div class="row narrow section-intro with-bottom-sep">
         <div class="col-twelve">
           <h3>This is Another Section</h3>
           <h1>Two</h1>
@@ -852,7 +867,7 @@ h1 {
    ================================================== -->
   <div class="html-section section-of">
     <section id="contact">
-      <div class="row narrow section-intro with-bottom-sep animate-this">
+      <div class="row narrow section-intro with-bottom-sep">
         <div class="col-twelve">
           <h3>This is Another Section</h3>
           <h1>Three</h1>
@@ -866,7 +881,7 @@ h1 {
    ================================================== -->
   <div class="html-section section-section">
     <section id="contact">
-      <div class="row narrow section-intro with-bottom-sep animate-this">
+      <div class="row narrow section-intro with-bottom-sep">
         <div class="col-twelve">
           <h3>This is Another Section</h3>
           <h1>Four</h1>
@@ -974,66 +989,150 @@ h1 {
   </script>
 
 <script>
-    // Updated Function
-    function onClick(toPos, toRot, timer, display) {
+
+    // LOCATION DATA HERE
+    const locationDict = {
+      1: {toPos: [0, 0, 0], toRot: [0, 0, 0], timer: 250, display: 'name'},
+      2: {toPos: [0, 1, 3], toRot: [0, 90, 0], timer: 1000, display: 'of'},
+      3: {toPos: [2, 2, 3], toRot: [0, 270, 0], timer: 500, display: 'section'}
+    };
+
+    // INIT DATA
+    const dictLength = Object.keys(locationDict).length;
+    var currentPos = 1;
+
+    // MENU CLICK FUNCTION
+    function onClick(loc) {
+
+      currentPos = loc;
+      const data = locationDict[currentPos];
+      history.pushState( {} , '#' + data.display, '#' + data.display );
 
       $('.html-section').css('display', 'none');
-      $('.section-' + display).css('display', 'block');
+      $('.section-' + data.display).css('display', 'block');
 
-      if (typeof toPos == 'object' && typeof toRot == 'object' && typeof timer == 'number') {
-        animateCam();
+      if (typeof data.toPos == 'object' && typeof data.toRot == 'object' && typeof data.timer == 'number') {
+        animateCam(data);
       } else {
         alert('FUNCTION PARAMETERS ARE NOT CORRECT!');
       }
+    }
 
-      function animateCam() {
-        // Selector
-        var cam = document.querySelector('#camera_GRP');
+    // ARROW CLICK FUNCTION
+    function onArrowClick(dir) {
 
-        // Position
-        var fromPos = cam.getAttribute('position');
-        fromPos = [fromPos.x.toString(), fromPos.y.toString(), fromPos.z.toString()];
-        fromPos = fromPos.join(" ");
-        toPos = toPos.join(" ");
-        cam.setAttribute('animation', { from: fromPos, to: toPos, dur: timer } );
+      currentPos += dir;
+      if (currentPos > dictLength) {
+        currentPos = currentPos % dictLength;
+      }
+      if (currentPos < 1) {
+        currentPos = dictLength;
+      }
 
-        // Rotation
-        var fromRot = cam.getAttribute('rotation');
-        fromRot = [fromRot.x.toString(), fromRot.y.toString(), fromRot.z.toString()];
-        fromRot = fromRot.join(" ");
-        toRot = toRot.join(" ");
-        cam.setAttribute('animation__rot', { from: fromRot, to: toRot, dur: timer } );
+      // CHANGE ADDRESS
+      const data = locationDict[currentPos];
+      history.pushState( {} , '#' + data.display, '#' + data.display );
 
-        // Trigger
-        cam.emit('animate');
+      $('.html-section').css('display', 'none');
+      $('.section-' + data.display).css('display', 'block');
 
+      if (typeof data.toPos == 'object' && typeof data.toRot == 'object' && typeof data.timer == 'number') {
+        animateCam(data);
+      } else {
+        alert('FUNCTION PARAMETERS ARE NOT CORRECT!');
       }
     }
 
-    // Mouse Move
-    AFRAME.registerComponent('move-camera', {
+    // CAMERA ANIMATE FUNCTION
+    function animateCam(data) {
+      // Selector
+      var cam = document.querySelector('#camera_GRP');
+
+      // Position
+      var fromPos = cam.getAttribute('position');
+      fromPos = [fromPos.x.toString(), fromPos.y.toString(), fromPos.z.toString()];
+      fromPos = fromPos.join(" ");
+      toPos = data.toPos.join(" ");
+      cam.setAttribute('animation', { from: fromPos, to: toPos, dur: data.timer } );
+
+      // Rotation
+      var fromRot = cam.getAttribute('rotation');
+      fromRot = [fromRot.x.toString(), fromRot.y.toString(), fromRot.z.toString()];
+      fromRot = fromRot.join(" ");
+      toRot = data.toRot.join(" ");
+      cam.setAttribute('animation__rot', { from: fromRot, to: toRot, dur: data.timer } );
+
+      // Trigger
+      cam.emit('animate');
+    }
+
+    // Window Info
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var xDelta = 0,
+        yDelta = 0;
+
+    window.addEventListener('resize', function() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+    });
+
+    window.addEventListener('mousemove', onMouseMove, false);
+    function onMouseMove(event) {
+      xDelta = (event.clientX / width - 0.5);
+      yDelta = ((1 - event.clientY / height) - 0.5);
+    }
+
+
+    // GYRO START //
+
+    function initGyro() {
+        lastOrientation = {};
+        if ('ondeviceorientation' in window) {
+            window.addEventListener('deviceorientation', deviceOrientationTest, false);
+        }
+    }
+
+    function deviceOrientationTest(event) {
+        window.removeEventListener('deviceorientation', deviceOrientationTest);
+        if (event.beta != null && event.gamma != null) {
+            window.addEventListener('deviceorientation', onDeviceOrientationChange, false);
+            setInterval(onRenderUpdate, 25);
+        }
+    }
+
+    function onDeviceOrientationChange(event) {
+        lastOrientation.gamma = event.gamma;
+        lastOrientation.beta = event.beta;
+    }
+
+    function onRenderUpdate(event) {
+      xDelta = lastOrientation.gamma / 180.0 - 0.5;
+      yDelta = lastOrientation.beta / 180.0;
+      // BELOW IS THE MULTIPLIER FOR THE GYRO MOVEMENT
+      xDelta *= 10;
+      yDelta *= 10;
+    }
+
+    window.onload = initGyro;
+
+    // GYRO END //
+
+    // Parallax Entity
+    AFRAME.registerComponent('move-entity', {
+
+      schema: {
+        moveMult: {type: 'number', default: 1.0}
+      },
 
       init: function() {
-        const cam = document.querySelector('#camera');
-        // Use camMoveMult to control the amount of parallax movement
-        const camMoveMult = 1.0;
-        var initPos = cam.getAttribute('position');
-        var width = window.innerWidth;
-        var height = window.innerHeight;
+        this.initPos = this.el.getAttribute('position');
+      },
 
-        window.addEventListener('resize', function() {
-          width = window.innerWidth;
-          height = window.innerHeight;
-        });
-
-        window.addEventListener('mousemove', onMouseMove, false);
-        function onMouseMove(event) {
-          var xDelta = (event.clientX / width - 0.5) * camMoveMult;
-          var yDelta = ((1 - event.clientY / height) - 0.5) * camMoveMult;
-          xDelta += initPos.x;
-          yDelta += initPos.y;
-          cam.setAttribute('position', { x: xDelta, y: yDelta, z: initPos.z })
-        }
+      tick: function() {
+        var xDeltaMod = xDelta * this.data.moveMult + this.initPos.x;
+        var yDeltaMod = yDelta * this.data.moveMult + this.initPos.y;
+        this.el.setAttribute('position', { x: xDeltaMod, y: yDeltaMod, z: this.initPos.z })
       }
     });
 
