@@ -330,16 +330,15 @@ background: #000;
 	 <a-scene embedded>
 	<a-assets>
 
-			<video id="timelapse" src="video/timelapse.mp4"
-               autoplay loop crossorigin></video>
-			   <video id="car" src="video/car.mp4"
-               autoplay loop crossorigin></video>
+		<a-asset-item id="island-gltf" src="models/ivarisland.gltf"></a-asset-item>
+			  
 
   </a-assets>
 
-<a-videosphere radius=25 src="#timelapse" rotation="0 0 0"></a-videosphere>
+
 
 <!-- INTRO START -->
+<a-ring color="#ffce00" radius-inner="1" radius-outer="1.5"  position="0 2.6 -6" scale="3 3 3"></a-ring>
 <a-entity class="text-rotation_GRP" rotation="0 0 0" position="0 1.5 -6">
 <a-entity id="introText_GRP" move-entity="moveMult: 2.0">
   <a-text align=center anchor=center font="kelsonsans" value="We Put You" position="0 2 0" scale="3 3 3"></a-text>
