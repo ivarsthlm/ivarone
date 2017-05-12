@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<!--[if IE 8 ]><html class="no-js oldie ie8" lang="en"> <![endif]-->
+<!--[if IE 9 ]><html class="no-js oldie ie9" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+
+   <!--- basic page needs
+   ================================================== -->
+   <meta charset="utf-8">
+	<title>IVAR</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+
+   <!-- mobile specific metas
+   ================================================== -->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+ 	<!-- CSS
+   ================================================== -->
+   <link rel="stylesheet" href="css/base.css">
+   <link rel="stylesheet" href="css/vendor.css">
+   <link rel="stylesheet" href="css/main.css">
+
+   <!-- script
+   ================================================== -->
+	<script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/9401D3CB-D4F2-0242-8FDB-E16E57D5F1AF/main.js" charset="UTF-8"></script><script type="text/javascript" src="https://gc.kis.v2.scr.kaspersky-labs.com/9401D3CB-D4F2-0242-8FDB-E16E57D5F1AF/main.js" charset="UTF-8"></script><script src="js/modernizr.js"></script>
+	<script src="js/pace.min.js"></script>
+
+   <!-- favicons
+	================================================== -->
+	<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+	<link rel="icon" href="favicon.ico" type="image/x-icon">
+<script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+			<script src="script/aframe-extras.js"></script>
+			<script src="script/aframe-mouse-cursor-component.min.js"></script>
+			<script src="script/aframe-physics-system.js"></script>
+      <script src="https://unpkg.com/aframe-animation-component@^3.2.0/dist/aframe-animation-component.min.js"></script>
+	  <style>
+	@font-face {
+    font-family: NordicNarrowRegular;
+    src: url(fonts/nnregular.otf);
+}
+body {
+
+  margin: 0 !important;
+}
+
+#home {
+  height: 100vh;
+}
+
+a-scene {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  heigh: 100%;
+  text-align: center;
+  top: 40%;
+  left: 0;
+  margin: 0 auto;
+  font-family: 'NordicNarrowRegular', sans-serif;
+}
+.container p {
+  font-size: 20px;
+}
+.container a {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  color: #1abc9c;
+  text-decoration: none;
+  font-size: 20px;
+  overflow: hidden;
+  top: 5px;
+}
+.container a:after {
+  content: '';
+  position: absolute;
+  background: #1abc9c;
+  height: 2px;
+  width: 0%;
+  transform: translateX(-50%);
+  left: 50%;
+  bottom: 0;
+  transition: .35s ease;
+}
+.container a:hover:after, .container a:focus:after, .container a:active:after {
+  width: 100%;
+}
+
+h1 {
+  position: relative;
+  text-align: center;
+  font-family: 'NordicNarrowRegular', serif;
+}
+
+.button_container {
+  position: fixed;
+  top: 5%;
+  right: 2%;
+  height: 27px;
+  width: 35px;
+  cursor: pointer;
+  z-index: 1000;
+  transition: opacity .25s ease;
+}
+.button_container:hover {
+  opacity: .7;
+}
+.button_container.active .top {
+  transform: translateY(11px) translateX(0) rotate(45deg);
+  background: #FFF;
+}
+.button_container.active .middle {
+  opacity: 0;
+  background: #FFF;
+}
+.button_container.active .bottom {
+  transform: translateY(-11px) translateX(0) rotate(-45deg);
+  background: #FFF;
+}
+.button_container span {
+  background: #fff;
+  border: none;
+  height: 5px;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: all .35s ease;
+  cursor: pointer;
+}
+.button_container span:nth-of-type(2) {
+  top: 11px;
+}
+.button_container span:nth-of-type(3) {
+  top: 22px;
+}
+
+.overlay {
+  position: fixed;
+  background: #005b59;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .35s, visibility .35s, height .35s;
+  overflow: hidden;
+}
+.overlay.open {
+  opacity: .9;
+  visibility: visible;
+  height: 100%;
+  z-index: 999;
+}
+.overlay.open li {
+  animation: fadeInRight .5s ease forwards;
+  animation-delay: .35s;
+}
+.overlay.open li:nth-of-type(2) {
+  animation-delay: .4s;
+}
+.overlay.open li:nth-of-type(3) {
+  animation-delay: .45s;
+}
+.overlay.open li:nth-of-type(4) {
+  animation-delay: .50s;
+}
+.overlay nav {
+  position: relative;
+  height: 70%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+    font-family: Montserrat;
+    font-weight: 400;
+    text-transform: uppercase;
+  text-align: center;
+}
+.overlay ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 auto;
+  display: inline-block;
+  position: relative;
+  height: 100%;
+}
+.overlay ul li {
+  display: block;
+  height: 25%;
+  height: calc(100% / 4);
+  min-height: 50px;
+  position: relative;
+  opacity: 0;
+}
+.overlay ul li a {
+  display: block;
+  position: relative;
+  color: #FFF;
+  text-decoration: none;
+  overflow: hidden;
+}
+.overlay ul li a:hover:after, .overlay ul li a:focus:after, .overlay ul li a:active:after {
+  width: 100%;
+}
+.overlay ul li a:after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0%;
+  transform: translateX(-50%);
+  height: 3px;
+  background: #FFF;
+  transition: .35s;
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    left: 20%;
+  }
+  100% {
+    opacity: 1;
+    left: 0;
+  }
+}
+
+.arrow {
+  position: absolute;
+  font-size: 60px;
+  top: calc(50% - 30px);
+  color: white;
+  transition: .35s;
+}
+
+.arrow.left {
+  left: 30px;
+}
+
+.arrow.right {
+  right: 30px;
+}
+
+.arrow:hover {
+  color: #fff;
+}
+
+
+.case-content { max-width: 1024px;
+    margin-top: 3rem;
+    background: #000000;
+	color: #fff;
+    z-index: 600;
+    position: relative; }
+	
+	.case-content.end {margin-bottom: 6rem;}
+
+.case h1, h2, h3, h4, h5, h6 { color: #fff; }
+#portfolio {
+background: #000;
+}
+
+#portfolio .intro-wrap {
+    padding: 10rem 0 0rem 0;
+    background: #111111;
+}
+
+#portfolio h2 {font-size: 3.5rem;}
+
+#services {
+
+    background-image: url(images/holi5.jpg);
+	</style>
+</head>
+
+<body id="top">
+
+
+<!-- MENU -->
+    <div class="container">
+       </div>
+	  <div class="button_container" id="toggle"><span class="top"></span><span class="middle"></span><span class="bottom"></span></div>
+    <div class="overlay" id="overlay">
+	      <nav class="overlay-menu">
+        <ul>
+
+         <!-- <li><a href="#" onClick="$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">Explore</a></li> -->
+
+          <!-- FUNCTION TRIGGET UPDATE onClick([position], [rotation], duration)-->
+          <li><a onclick="onClick(1);$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">Intro</a></li>
+	        <li><a onclick="onClick(4);$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">The Team</a></li>
+          <li><a onclick="onClick(3);$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">Our Work</a></li>
+		 
+		   <li><a onclick="onClick(2);$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">Explore</a></li>
+        </ul>
+      </nav>
+	  <div id=overlay-main>
+	  </div>
+    </div>
+
+
+	<!-- header
+   ================================================== -->
+   <header>
+
+   	<div class="header-logo">
+	      <a href="index.html">Infinity</a>
+	   </div>
+
+
+
+	</header> <!-- end header -->
+
+
+   <!-- home
+   ================================================== -->
+   <section id="home">
+
+
+
+	 <a-scene embedded>
+	<a-assets>
+
+			<video id="timelapse" src="video/timelapse.mp4"
+               autoplay loop crossorigin></video>
+			   <video id="car" src="video/car.mp4"
+               autoplay loop crossorigin></video>
+
+  </a-assets>
+
+<a-videosphere radius=25 src="#timelapse" rotation="0 0 0"></a-videosphere>
+
+<!-- INTRO START -->
+<a-entity class="text-rotation_GRP" rotation="0 0 0" position="0 1.5 -6">
+<a-entity id="introText_GRP" move-entity="moveMult: 2.0">
+  <a-text align=center anchor=center font="kelsonsans" value="We Put You" position="0 2 0" scale="3 3 3"></a-text>
+  <a-text align=center anchor=center font="kelsonsans" value="IN THE CENTER" position="0 1 0" scale="4 4 4"></a-text>
+  <a-text align=center anchor=center font="kelsonsans" value="Of The Story" position="0 0 0" scale="3 3 3"></a-text>
+</a-entity>
+</a-entity>
+
+<!-- MEET US -->
+<a-entity class="text-rotation_GRP" rotation="0 -90 0" position="6 3.5 4">
+<a-entity id="meetText_GRP" move-entity="moveMult: 2.0">
+  <a-text align=right anchor=right font="kelsonsans" value="Meet" position="0 1 0" scale="3 3 3"></a-text>
+  <a-text align=right anchor=right font="kelsonsans" value="THE TEAM" position="0 0 0" scale="4 4 4"></a-text>
+</a-entity>
+</a-entity>
+
+<!-- WORK -->
+<a-entity class="text-rotation_GRP" rotation="0 180 0" position="-4 2 6">
+<a-entity id="meetText_GRP" move-entity="moveMult: 2.0">
+  <a-text align=right anchor=right font="kelsonsans" value="See our" position="0 1 0" scale="3 3 3"></a-text>
+  <a-text align=right anchor=right font="kelsonsans" value="WORK" position="0 0 0" scale="4 4 4"></a-text>
+</a-entity>
+</a-entity>
+
+
+<!-- EXPLORE WITH US -->
+<a-entity class="text-rotation_GRP" rotation="0 90 0" position="-6 2.5 0.6">
+<a-entity id="exploreText_GRP" move-entity="moveMult: 2.0">
+  <a-text align=right anchor=right font="kelsonsans" value="GO EXPLORING" position="0 1 0" scale="3 3 3"></a-text>
+  <a-text align=right anchor=right font="kelsonsans" value="With Us" position="0 0 0" scale="4 4 4"></a-text>
+</a-entity>
+</a-entity>
+
+	<!-- LIGHTING -->
+
+  <a-light type="ambient" intensity="1" ></a-light>
+
+  <!-- CAMERA -->
+  <a-entity id="camera_GRP"
+            animation="property: position; startEvents: animate"
+            animation__rot="property: rotation; startEvents: animate">
+    <a-camera id="camera"
+      position="0 1 0"
+      rotation="0 0 0"
+      look-controls="enabled: false"
+      wasd-controls="enabled: false"
+      move-entity>
+	  </a-camera>
+  </a-entity>
+
+    </a-scene>
+
+<div class="overlay"></div>
+
+<a onclick="onArrowClick(1)">
+  <i class="fa fa-arrow-left arrow left"></i>
+</a>
+
+<a onclick="onArrowClick(-1)">
+  <i class="fa fa-arrow-right arrow right"></i>
+</a>
+
+		<ul class="home-social-list">
+	      <li class="animate-intro">
+	        	<a target=_blank href="https://www.facebook.com/ivarsthlm"><i class="fa fa-facebook-square"></i></a>
+	      </li>
+	      <li class="animate-intro">
+	        	<a target=_blank href="https://twitter.com/ivarsthlm"><i class="fa fa-twitter"></i></a>
+	      </li>
+	      <li class="animate-intro">
+	        	<a target=_blank href="https://www.instagram.com/ivarsthlm/"><i class="fa fa-instagram"></i></a>
+	      </li>
+		  
+
+		  
+		  
+		  
+       
+	   </ul> <!-- end home-social-list -->
+
+		 <div class="scrolldown">
+			<a href="#textwrapper" class="scroll-icon smoothscroll">
+		   	Scroll down
+		   	<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+			</a>
+		</div>
+
+   </section> <!-- end home -->
+
+   <!-- PAGE ONE START -->
+<div id=textwrapper>
+   <!-- about
+   ================================================== -->
+   <div class="html-section section-start">
+     <section id="about">
+
+     	<div class="row about-wrap">
+     		<div class="col-full">
+
+     			<div class="about-profile-bg"></div>
+
+  				<div class="intro">
+  					<h3 class="animate-this">About Us</h3>
+  	   			<p class="lead animate-this">At <span>IVAR</span>, we believe that interactive storytelling is the best thing that has happened since sliced bread.</p>
+  				</div>
+
+     		</div> <!-- end col-full  -->
+     	</div> <!-- end about-wrap  -->
+
+     </section> <!-- end about -->
+
+
+     <!-- about
+     ================================================== -->
+     <section id="services">
+
+     	<div class="overlay"></div>
+     	<div class="gradient-overlay"></div>
+
+     	<div class="row narrow section-intro with-bottom-sep animate-this">
+     		<div class="col-full">
+
+     				<h3>Our Core</h3>
+     			   <h1>We believe in magic.</h1>
+
+     			   <p class="lead">Lorem ipsum Elit ut consequat veniam eu nulla nulla reprehenderit reprehenderit sit velit in cupidatat ex aliquip ut cupidatat Excepteur tempor id irure sed dolore sint sunt voluptate ullamco nulla qui Duis qui culpa voluptate enim ea aute qui veniam in irure et nisi nostrud deserunt est officia minim.</p>
+
+     	   </div> <!-- end col-full -->
+     	</div> <!-- end row -->
+
+     	<div class="row services-content">
+
+     		<div class="services-list block-1-2 block-tab-full group">
+
+  	      	<div class="bgrid service-item animate-this">
+
+  	      		<span class="icon"><i class="icon-paint-brush"></i></span>
+
+  	            <div class="service-content">
+  	            	<h3 class="h05">Interaction</h3>
+
+  		            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+  	         		</p>
+  	         	</div>
+
+  				</div> <!-- end bgrid -->
+
+  				<div class="bgrid service-item animate-this">
+
+  					<span class="icon"><i class="icon-earth"></i></span>
+
+  	            <div class="service-content">
+  	            	<h3 class="h05">Storyworlds</h3>
+
+  		            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+  	         		</p>
+  	            </div>
+
+  			   </div> <!-- end bgrid -->
+
+  			   <div class="bgrid service-item animate-this">
+
+  			   	<span class="icon"><i class="icon-lego-block"></i></span>
+
+  	            <div class="service-content">
+  	            	<h3 class="h05">360 degree mindset</h3>
+
+  		            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+  	        			</p>
+  	            </div>
+
+  			   </div> <!-- end bgrid -->
+
+  				<div class="bgrid service-item animate-this">
+
+  					<span class="icon"><i class="icon-megaphone"></i></span>
+
+  	            <div class="service-content">
+  	            	<h3 class="h05">More</h3>
+
+  		            <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit.
+  	         		</p>
+  	            </div>
+
+  				</div> <!-- end bgrid -->
+
+  	      </div> <!-- end services-list -->
+
+     	</div> <!-- end services-content -->
+
+     </section> <!-- end services -->
+
+
+     
+
+
+    
+
+
+  	<!-- stats
+     ================================================== -->
+     <section id="clients">
+
+  		<div class="row animate-this">
+  			<div class="col-twelve">
+
+  				<div class="client-lists owl-carousel">
+    					<div><img src="images/clients/mozilla.png" alt=""></div>
+    					<div><img src="images/clients/bower.png" alt=""></div>
+    					<div><img src="images/clients/codepen.png" alt=""></div>
+    					<div><img src="images/clients/envato.png" alt=""></div>
+    					<div><img src="images/clients/firefox.png" alt=""></div>
+    					<div><img src="images/clients/grunt.png" alt=""></div>
+    					<div><img src="images/clients/evernote.png" alt=""></div>
+    					<div><img src="images/clients/github.png" alt=""></div>
+    					<div><img src="images/clients/joomla.png" alt=""></div>
+    					<div><img src="images/clients/jQuery.png" alt=""></div>
+    					<div><img src="images/clients/wordpress.png" alt=""></div>
+  				</div>
+
+  			</div> <!-- end col-twelve -->
+  		</div> <!-- end row -->
+
+     </section> <!-- end clients -->
+
+
+     
+  </div>
+
+  <!-- HTML SECTION TWO
+   ================================================== -->
+  <div class="html-section section-team">
+    <section id="contact">
+      <div class="row narrow section-intro with-bottom-sep">
+        <div class="col-twelve">
+          <h3>This is Another Section</h3>
+          <h1>Team</h1>
+          <p class="lead">Which should be hidden initially but visible after clicking the menu buttons!.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- HTML SECTION THREE
+   ================================================== -->
+  <div class="html-section section-work">
+  
+	<!-- portfolio
+     ================================================== -->
+     <section id="portfolio">
+
+     	<div class="intro-wrap">
+
+     		<div class="row narrow section-intro with-bottom-sep ">
+  	   		<div class="col-twelve">
+  	   			<h3>Showcase</h3>
+  		   		<h1>See Our Featured Projects.</h1>
+
+  		   		<p class="lead">Lorem ipsum Dolor adipisicing nostrud et aute Excepteur amet commodo ea dolore irure esse Duis nulla sint fugiat cillum ullamco proident aliquip quis qui voluptate dolore veniam Ut laborum non est in officia.</p>
+  	   		</div>
+  	   	</div> <!-- end row section-intro -->
+		
+
+
+     	</div> <!-- end intro-wrap -->
+		
+		
+		<div class="row case-content">
+		<div class="col-seven tab-full">
+
+
+               <iframe width="560" height="315" src="https://www.youtube.com/embed/akGd7_qyHGw" frameborder="0" allowfullscreen></iframe>
+
+            </div> <!-- end col-seven -->
+
+            <div class="col-four tab-full contact-info end">
+			<h2>I Am The Saviour In The Sky</h2>
+			<h5>Client: Nikon</h5>	
+			<h5>Platform: Web, TV</h5>	
+			</div>
+			<!-- end col-four -->
+			</div>
+		
+		
+			<div class="row case-content end">
+		<div class="col-seven tab-full">
+
+
+              <a target=_blank href=http://mynewhome.plansverige.org/><img src=case/mynewhome.png></a>
+			  <br>
+			  Click to see the interactive browser version of My New Home.
+
+            </div> <!-- end col-seven -->
+
+            <div class="col-four tab-full contact-info end">
+			<h2>My New Home</h2>
+			<h5>Client: Plan International</h5>	
+			<h5>Platform: WebVR, Samsung GearVR</h5>	
+			In this interactive tour of a refugee camp Plan International invites you on a journey that let's you imagine what it’s like to have to flee from your home as a child, and end up in a vast refugee camp far away from home. 
+
+
+My New Home is a 360/VR-experience where you explore the refugee camp Nyarugusu in Tanzania, together with the children that live there. The experience lets you walk through the camp as if you were a refugee child, arriving at your new home in the vast refugee camp.
+			</div>
+			<!-- end col-four -->
+			</div>
+		
+		
+		
+
+     	
+
+     </section>  <!-- end portfolio -->
+  </div>
+
+  <!-- HTML SECTION FOUR
+   ================================================== -->
+  <div class="html-section section-explore">
+    <section id="contact">
+      <div class="row narrow section-intro with-bottom-sep">
+      <div class="row narrow section-intro with-bottom-sep">
+        <div class="col-twelve">
+          <h3>This is Another Section</h3>
+          <h1>Explore</h1>
+          <p class="lead">Which should be hidden initially but visible after clicking the menu buttons!.</p>
+        </div>
+      </div>
+    </section>
+  </div>
+  </div>
+  
+  <!-- contact
+      ================================================== -->
+      <section id="contact">
+
+         <div class="overlay"></div>
+
+   		<div class="row narrow section-intro with-bottom-sep">
+      		<div class="col-twelve">
+      			<h3>Contact</h3>
+      			<h1>Get In Touch.</h1>
+
+      			<p class="lead">If you're interested in our Virtual Reality in general, or have a particular project in mind, feel free to shoot us an email or give us a call.<br><br>We love to discuss and develop projects.</p>
+      		</div>
+      	</div> <!-- end section-intro -->
+
+      	<div class="row contact-content">
+
+      		<div class="col-seven tab-full">
+
+      			<h5>Send Us A Message</h5>
+
+               <!-- form -->
+               <form name="contactForm" id="contactForm" method="post">
+
+                  <div class="form-field">
+    					   <input name="contactName" type="text" id="contactName" placeholder="Name" value="" minlength="2" required="">
+                  </div>
+
+                  <div class="row">
+                    	<div class="col-six tab-full">
+                    		<div class="form-field">
+                    			<input name="contactEmail" type="email" id="contactEmail" placeholder="Email" value="" required="">
+                    		</div>
+   		            </div>
+   	            	<div class="col-six tab-full">
+   	            		<div class="form-field">
+   	            			<input name="contactSubject" type="text" id="contactSubject" placeholder="Subject" value="">
+   	                  </div>
+   		            </div>
+                  </div>
+
+                  <div class="form-field">
+   	              	<textarea name="contactMessage" id="contactMessage" placeholder="message" rows="10" cols="50" required=""></textarea>
+   	            </div>
+
+                  <div class="form-field">
+                     <button class="submitform">Submit</button>
+
+                     <div id="submit-loader">
+                        <div class="text-loader">Sending...</div>
+          			      <div class="s-loader">
+   							  	<div class="bounce1"></div>
+   							  	<div class="bounce2"></div>
+   							  	<div class="bounce3"></div>
+   							</div>
+   						</div>
+                  </div>
+
+         		</form> <!-- end form -->
+
+               <!-- contact-warning -->
+               <div id="message-warning"></div>
+
+               <!-- contact-success -->
+         		<div id="message-success">
+                  <i class="fa fa-check"></i>Your message was sent, thank you!<br>
+         		</div>
+
+            </div> <!-- end col-seven -->
+
+            <div class="col-four tab-full contact-info end">
+
+            	<h5>Contact Information</h5>
+
+            	<div class="cinfo">
+   	   			<h6>Where to Find Us</h6>
+   	   			<p>
+   	            	Långholmsgatan 30<br>
+   	            	11733<br>
+   	            	Stockholm<br>
+   					SWEDEN
+   	            </p>
+   	   		</div> <!-- end cinfo -->
+
+   	   		<div class="cinfo">
+   	   			<h6>Email Us At</h6>
+   	   			<p>
+   	   				hello@ivarsthlm.com<br>
+
+   				   </p>
+   	   		</div> <!-- end cinfo -->
+
+   	   		<div class="cinfo">
+   	   			<h6>Call Us At</h6>
+   	   			<p>
+   	   				Phone 1: (+46) 70 490 13 31<br>
+   				   	Phone 2: (+46) 555 0100<br>
+   				     
+   				   </p>
+   	   		</div>
+
+            </div> <!-- end cinfo -->
+
+      	</div> <!-- end row contact-content -->
+
+   	</section> <!-- end contact -->
+	
+	</div>
+  
+
+	<!-- footer
+   ================================================== -->
+	<footer>
+     	<div class="footer-main">
+
+   		<div class="row">
+
+	      	<div class="col-five tab-full footer-about">
+
+	            <h4 class="h05">IVAR.</h4>
+
+	            <p>IVAR is a pioneer in creating interactive 360-degree content and immersive Virtual Reality experiences. Our power springs from our background in documentary storytelling, with experience of telling the small story within the large perspective. </p>
+				
+				<p>We continually create immersive narratives that hands over control to the user and results in better engagement. Our stories resonate and inspire, as they conjure the gut feeling of actually being there – as a protagonist in the middle of the story.</p>
+
+		      </div> <!-- end footer-about -->
+
+	      	<div class="col-three tab-full footer-social">
+
+	      		<h4 class="h05">Follow Us.</h4>
+
+	      		<ul class="list-links">
+	      			<li><a href="https://www.facebook.com/ivarsthlm">Facebook</a></li>
+						<li><a href="https://twitter.com/ivarsthlm">Twitter</a></li>
+						<li><a href="https://www.instagram.com/ivarsthlm/">Instagram</a></li>
+						
+					</ul>
+
+	      	</div> <!-- end footer-social -->
+
+	      	<div class="col-four tab-full footer-subscribe end">
+
+	      		<h4 class="h05">Get Notified.</h4>
+
+	      		<p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Praesent sapien massa.</p>
+
+	      		<div class="subscribe-form">
+
+	      			<form id="mc-form" class="group" novalidate="true">
+
+							<input type="email" value="" name="dEmail" class="email" id="mc-email" placeholder="type email" required="">
+
+			   			<!-- <input type="submit" name="subscribe" > -->
+			   			<button><i class="icon-mail"></i></button>
+
+		   				<label for="mc-email" class="subscribe-message"></label>
+
+						</form>
+
+	      		</div>
+
+	      	</div> <!-- end footer-subscribe -->
+
+	      </div> <!-- end row -->
+
+   	</div> <!-- end footer-main -->
+
+   	<div class="footer-bottom">
+
+      	<div class="row">
+
+      		<div class="col-twelve">
+	      		<div class="copyright">
+		         	<span>© Copyright IVAR Stockholm AB 2017.</span>
+		         	
+		         </div>
+	      	</div>
+
+      	</div>
+
+      </div> <!-- end footer-bottom -->
+
+      <div id="go-top">
+		   <a class="smoothscroll" title="Back to Top" href="#top">
+		   	<i class="fa fa-long-arrow-up" aria-hidden="true"></i>
+		   </a>
+		</div>
+   </footer>
+
+   <div id="preloader">
+    	<div id="loader"></div>
+   </div>
+
+   <!-- Java Script
+   ================================================== -->
+  <script src="js/jquery-2.1.3.min.js"></script>
+  <script src="js/plugins.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    $('#toggle').click(function() {
+      $(this).toggleClass('active');
+      $('#overlay').toggleClass('open');
+    });
+
+    $('.html-section').css('display', 'none');
+    $('.section-start').css('display', 'block');
+  </script>
+
+<script>
+
+    // LOCATION DATA HEREt
+    const locationDict = {
+      1: {toPos: [0, 0, 0], toRot: [0, 0, 0], timer: 1000, display: 'start'},
+      2: {toPos: [0, 0, 0], toRot: [0, 90, 0], timer: 1000, display: 'explore'},
+	  3: {toPos: [0, 0, 0], toRot: [0, 180, 0], timer: 1000, display: 'work'},
+      4: {toPos: [0, 0, 0], toRot: [0, 270, 0], timer: 1000, display: 'team'}
+    };
+
+    // INIT DATA
+    const dictLength = Object.keys(locationDict).length;
+    var currentPos = 1;
+
+    // MENU CLICK FUNCTION
+    function onClick(loc) {
+
+      currentPos = loc;
+      const data = locationDict[currentPos];
+      history.pushState( {} , '#' + data.display, '#' + data.display );
+
+      $('.html-section').css('display', 'none');
+      $('.section-' + data.display).css('display', 'block');
+
+      if (typeof data.toPos == 'object' && typeof data.toRot == 'object' && typeof data.timer == 'number') {
+        animateCam(data);
+      } else {
+        alert('FUNCTION PARAMETERS ARE NOT CORRECT!');
+      }
+    }
+
+    // ARROW CLICK FUNCTION
+    function onArrowClick(dir) {
+
+      currentPos += dir;
+      if (currentPos > dictLength) {
+        currentPos = currentPos % dictLength;
+      }
+      if (currentPos < 1) {
+        currentPos = dictLength;
+      }
+
+      // CHANGE ADDRESS
+      const data = locationDict[currentPos];
+      history.pushState( {} , '#' + data.display, '#' + data.display );
+
+      $('.html-section').css('display', 'none');
+      $('.section-' + data.display).css('display', 'block');
+
+      if (typeof data.toPos == 'object' && typeof data.toRot == 'object' && typeof data.timer == 'number') {
+        animateCam(data);
+      } else {
+        alert('FUNCTION PARAMETERS ARE NOT CORRECT!');
+      }
+    }
+
+    // CAMERA ANIMATE FUNCTION
+    function animateCam(data) {
+      // Selector
+      var cam = document.querySelector('#camera_GRP');
+
+      // Position
+      var fromPos = cam.getAttribute('position');
+      fromPos = [fromPos.x.toString(), fromPos.y.toString(), fromPos.z.toString()];
+      fromPos = fromPos.join(" ");
+      toPos = data.toPos.join(" ");
+      cam.setAttribute('animation', { from: fromPos, to: toPos, dur: data.timer } );
+
+      // Rotation
+      var modFromRot = cam.getAttribute('rotation');
+      var modToRot = data.toRot;
+
+      if (Math.abs(modFromRot.y - modToRot[1]) > 180) {
+        var sign = Math.sign(modFromRot.y - modToRot[1]);
+        modToRot[1] += 360 * sign;
+      }
+
+      var fromRot = modFromRot;
+      fromRot = [fromRot.x.toString(), fromRot.y.toString(), fromRot.z.toString()];
+      fromRot = fromRot.join(" ");
+      toRot = modToRot.join(" ");
+
+      cam.setAttribute('animation__rot', { from: fromRot, to: toRot, dur: data.timer } );
+
+      // Trigger
+      cam.emit('animate');
+    }
+
+    // Window Info
+    var width = window.innerWidth;
+    var height = window.innerHeight;
+    var xDelta = 0,
+        yDelta = 0;
+
+    window.addEventListener('resize', function() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+    });
+
+    window.addEventListener('mousemove', onMouseMove, false);
+    function onMouseMove(event) {
+      xDelta = (event.clientX / width - 0.5);
+      yDelta = ((1 - event.clientY / height) - 0.5);
+    }
+
+
+    // GYRO START //
+
+    function initGyro() {
+        lastOrientation = {};
+        if ('ondeviceorientation' in window) {
+            window.addEventListener('deviceorientation', deviceOrientationTest, false);
+        }
+    }
+
+    function deviceOrientationTest(event) {
+        window.removeEventListener('deviceorientation', deviceOrientationTest);
+        if (event.beta != null && event.gamma != null) {
+            window.addEventListener('deviceorientation', onDeviceOrientationChange, false);
+            setInterval(onRenderUpdate, 25);
+        }
+    }
+
+    function onDeviceOrientationChange(event) {
+        lastOrientation.gamma = event.gamma;
+        lastOrientation.beta = event.beta;
+    }
+
+    function onRenderUpdate(event) {
+      xDelta = lastOrientation.gamma / 180.0 - 0.5;
+      yDelta = lastOrientation.beta / 180.0;
+      // BELOW IS THE MULTIPLIER FOR THE GYRO MOVEMENT
+      xDelta *= 10;
+      yDelta *= 10;
+    }
+
+    window.onload = initGyro;
+
+    // GYRO END //
+
+    // Parallax Entity
+    AFRAME.registerComponent('move-entity', {
+
+      schema: {
+        moveMult: {type: 'number', default: 1.0}
+      },
+
+      init: function() {
+        this.initPos = this.el.getAttribute('position');
+      },
+
+      tick: function() {
+        var xDeltaMod = xDelta * this.data.moveMult + this.initPos.x;
+        var yDeltaMod = yDelta * this.data.moveMult + this.initPos.y;
+        this.el.setAttribute('position', { x: xDeltaMod, y: yDeltaMod, z: this.initPos.z })
+      }
+    });
+
+  </script>
+</body>
+
+</html>
