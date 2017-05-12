@@ -145,7 +145,7 @@ h1 {
 
 .overlay {
   position: fixed;
-  background: #03C0E2;
+  background: #005b59;
   top: 0;
   left: 0;
   width: 100%;
@@ -179,9 +179,10 @@ h1 {
   height: 70%;
   top: 50%;
   transform: translateY(-50%);
-  font-size: 50px;
-  font-family: 'NordicNarrowRegular', serif;
-  font-weight: 400;
+  font-size: 40px;
+    font-family: Montserrat;
+    font-weight: 400;
+    text-transform: uppercase;
   text-align: center;
 }
 .overlay ul {
@@ -270,11 +271,11 @@ h1 {
          <!-- <li><a href="#" onClick="$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">Explore</a></li> -->
 
           <!-- FUNCTION TRIGGET UPDATE onClick([position], [rotation], duration)-->
-          <li><a onclick="onClick(1)">Intro</a></li>
-	        <li><a onclick="onClick(4)">Meet the Team</a></li>
-          <li><a onclick="onClick(3)">Our Work</a></li>
+          <li><a onclick="onClick(1);$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">Intro</a></li>
+	        <li><a onclick="onClick(4);$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">The Team</a></li>
+          <li><a onclick="onClick(3);$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">Our Work</a></li>
 		 
-		   <li><a onclick="onClick(2)">Go Exploring with Us</a></li>
+		   <li><a onclick="onClick(2);$('#overlay').toggleClass('open'); $('.button_container').toggleClass('active');">Explore</a></li>
         </ul>
       </nav>
 	  <div id=overlay-main>
@@ -378,28 +379,28 @@ h1 {
 
 		<ul class="home-social-list">
 	      <li class="animate-intro">
-	        	<a href="#"><i class="fa fa-facebook-square"></i></a>
+	        	<a target=_blank href="https://www.facebook.com/ivarsthlm"><i class="fa fa-facebook-square"></i></a>
 	      </li>
 	      <li class="animate-intro">
-	        	<a href="#"><i class="fa fa-twitter"></i></a>
+	        	<a target=_blank href="https://twitter.com/ivarsthlm"><i class="fa fa-twitter"></i></a>
 	      </li>
 	      <li class="animate-intro">
-	        	<a href="#"><i class="fa fa-instagram"></i></a>
+	        	<a target=_blank href="https://www.instagram.com/ivarsthlm/"><i class="fa fa-instagram"></i></a>
 	      </li>
-         <li class="animate-intro">
-           	<a href="#"><i class="fa fa-behance"></i></a>
-         </li>
-	      <li class="animate-intro">
-	        	<a href="#"><i class="fa fa-dribbble"></i></a>
-	      </li>
+		  
+
+		  
+		  
+		  
+       
 	   </ul> <!-- end home-social-list -->
 
-		<div class="scrolldown">
+		<!-- <div class="scrolldown">
 			<a href="#about" class="scroll-icon smoothscroll">
 		   	Scroll down
 		   	<i class="fa fa-long-arrow-right" aria-hidden="true"></i>
 			</a>
-		</div>
+		</div> -->
 
    </section> <!-- end home -->
 
